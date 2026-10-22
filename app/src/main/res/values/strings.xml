@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Learning Activity</string>
+    <string name="title_dashboard">Beranda</string>
+    <string name="title_absen">Absen</string>
+    <string name="title_tugas">Tugas</string>
+    <string name="title_profil">Profil</string>
+</resources>
+

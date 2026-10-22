@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    app:cardBackgroundColor="@color/card_bg"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="2dp"
+    app:strokeColor="@color/card_border"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- TOP BAR: CATEGORY & STATUS PILL -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:text="Materi"
+                android:textColor="@color/text_muted"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvTaskStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_badge_pending"
+                android:paddingStart="12dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="4dp"
+                android:text="Belum Dikerjakan"
+                android:textColor="#EF4444"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <!-- TASK TITLE -->
+        <TextView
+            android:id="@+id/tvTaskTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Resume Materi High Impact Communication"
+            android:textColor="@color/forest_dark"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- DEADLINE WITH CLOCK ICON -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_clock"
+                app:tint="@color/text_muted" />
+
+            <TextView
+                android:id="@+id/tvDeadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:text="Tenggat: -"
+                android:textColor="@color/text_muted"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- PRIMARY BUTTON: KUMPULKAN TUGAS -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnOpenUpload"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/header_green_dark"
+            android:text="Kumpulkan Tugas"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:cornerRadius="12dp"
+            app:elevation="2dp" />
+
+        <!-- EXPANDABLE UPLOAD FILE & CAMERA SECTION -->
+        <LinearLayout
+            android:id="@+id/layoutUploadSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/card_border" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Upload File Tugas"
+                android:textColor="@color/forest_dark"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <!-- EMPTY STATE: DASHED BORDER UPLOAD BOX -->
+            <LinearLayout
+                android:id="@+id/layoutEmptyUploadBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_dashed_box"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <ImageView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:src="@drawable/ic_upload"
+                    app:tint="@color/text_muted" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Pilih file dokumen atau ambil foto langsung"
+                    android:textColor="@color/text_slate"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:gravity="center"
+                    android:text="Bisa upload lebih dari 1 file/foto (maks 5MB per file)"
+                    android:textColor="@color/text_muted"
+                    android:textSize="11sp" />
+
+                <!-- DUAL ACTION BUTTONS: KAMERA & BROWSE FILES -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <!-- TOMBOL AMBIL FOTO KAMERA -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnCamera"
+                        android:layout_width="0dp"
+                        android:layout_height="46dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/header_green_dark"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:text="Ambil Foto"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="12.5sp"
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        app:cornerRadius="10dp"
+                        app:icon="@drawable/ic_camera"
+                        app:iconGravity="textStart"
+                        app:iconPadding="6dp"
+                        app:iconSize="17dp"
+                        app:iconTint="@color/white" />
+
+                    <!-- TOMBOL BROWSE FILE -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnBrowseFiles"
+                        android:layout_width="0dp"
+                        android:layout_height="46dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#F1F5F9"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:text="Browse File"
+                        android:textAllCaps="false"
+                        android:textColor="@color/forest_dark"
+                        android:textSize="12.5sp"
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        app:cornerRadius="10dp"
+                        app:icon="@drawable/ic_upload"
+                        app:iconGravity="textStart"
+                        app:iconPadding="6dp"
+                        app:iconSize="17dp"
+                        app:iconTint="@color/forest_dark"
+                        app:strokeColor="@color/action_btn_border"
+                        app:strokeWidth="1dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- MULTI-FILE LIST SECTION (VISIBLE WHEN >= 1 FILE SELECTED) -->
+            <LinearLayout
+                android:id="@+id/layoutSelectedFilesList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tvFilesCountHeader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="File Terpilih (1)"
+                    android:textColor="@color/forest_dark"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <!-- CONTAINER FOR INFLATED FILE ITEMS -->
+                <LinearLayout
+                    android:id="@+id/containerFilesList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" />
+
+                <!-- MORE ACTIONS ROW: + AMBIL FOTO LAGI & + TAMBAH FILE -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAddMoreCamera"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/header_green_dark"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingStart="6dp"
+                        android:paddingEnd="6dp"
+                        android:text="+ Foto Lagi"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        app:cornerRadius="10dp"
+                        app:icon="@drawable/ic_camera"
+                        app:iconGravity="textStart"
+                        app:iconPadding="4dp"
+                        app:iconSize="15dp"
+                        app:iconTint="@color/white" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAddMoreFiles"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#F1F5F9"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:paddingStart="6dp"
+                        android:paddingEnd="6dp"
+                        android:text="+ Tambah File"
+                        android:textAllCaps="false"
+                        android:textColor="@color/forest_dark"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:maxLines="1"
+                        app:cornerRadius="10dp"
+                        app:icon="@drawable/ic_upload"
+                        app:iconGravity="textStart"
+                        app:iconPadding="4dp"
+                        app:iconSize="15dp"
+                        app:iconTint="@color/forest_dark"
+                        app:strokeColor="@color/action_btn_border"
+                        app:strokeWidth="1dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- ACTION BUTTONS: BATAL / KIRIM TUGAS -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCancelUpload"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/white"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:padding="0dp"
+                    android:gravity="center"
+                    android:text="Batal"
+                    android:textAllCaps="false"
+                    android:textColor="@color/forest_dark"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="12dp"
+                    app:strokeColor="@color/action_btn_border"
+                    app:strokeWidth="1dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSubmitTask"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#94A3B8"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:gravity="center"
+                    android:text="Kirim Tugas"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    app:cornerRadius="12dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

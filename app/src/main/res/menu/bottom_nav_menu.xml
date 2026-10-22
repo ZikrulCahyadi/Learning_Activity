@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:icon="@drawable/ic_home"
+        android:title="Dashboard" />
+    <item
+        android:id="@+id/navigation_absen"
+        android:icon="@drawable/ic_qr_code"
+        android:title="Absen" />
+    <item
+        android:id="@+id/navigation_tugas"
+        android:icon="@drawable/ic_assignment"
+        android:title="Tugas" />
+    <item
+        android:id="@+id/navigation_evaluasi"
+        android:icon="@drawable/ic_star"
+        android:title="Evaluasi" />
+    <item
+        android:id="@+id/navigation_profil"
+        android:icon="@drawable/ic_person"
+        android:title="Profil" />
+</menu>

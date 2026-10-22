@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Palm Green & Brand Colors -->
+    <color name="primary">#0D3829</color>
+    <color name="primary_dark">#0A2D21</color>
+    <color name="primary_light">#175E47</color>
+    
+    <color name="header_green_dark">#0D3829</color>
+    <color name="header_green_mid">#175E47</color>
+    <color name="header_green_light">#1A6A51</color>
+    <color name="accent_lime">#86D16F</color>
+    
+    <color name="forest_dark">#0F4A38</color>
+    <color name="forest_mid">#047857</color>
+    <color name="mint_bg">#E8FCF1</color>
+    <color name="mint_border">#D1FAE5</color>
+    <color name="mint_light">#ECFDF5</color>
+    
+    <color name="accent_green">#047857</color>
+    <color name="accent_green_light">#E8FCF1</color>
+    
+    <color name="coral_red">#F43F5E</color>
+    <color name="accent_red">#F43F5E</color>
+    <color name="accent_red_light">#FEE2E2</color>
+    
+    <color name="amber_text">#D97706</color>
+    <color name="amber_bg">#FFFBEB</color>
+    <color name="accent_amber">#D97706</color>
+    <color name="accent_amber_light">#FFFBEB</color>
+    
+    <color name="blue_icon">#3B82F6</color>
+    <color name="blue_bg">#EFF6FF</color>
+    
+    <color name="bg_page">#F4F7F6</color>
+    <color name="background_light">#F4F7F6</color>
+    
+    <color name="card_bg">#FFFFFF</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="card_border">#F1F5F9</color>
+    <color name="action_btn_bg">#F8FAFC</color>
+    <color name="action_btn_border">#E2E8F0</color>
+    <color name="divider">#E2E8F0</color>
+    
+    <color name="text_title">#0F4A38</color>
+    <color name="text_slate">#1E293B</color>
+    <color name="text_primary">#1E293B</color>
+    <color name="text_muted">#64748B</color>
+    <color name="text_secondary">#64748B</color>
+    <color name="text_light_slate">#94A3B8</color>
+    
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+</resources>
