@@ -21,7 +21,7 @@ import java.lang.reflect.Type
 import java.util.concurrent.TimeUnit
 
 object ApiClient {
-    private const val BASE_URL = "https://fr-academy.my.id/api/"
+    private const val BASE_URL = "https://academy.first-resources.com/api/"
 
     private var apiService: ApiService? = null
 
