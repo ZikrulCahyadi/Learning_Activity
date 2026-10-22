@@ -14,6 +14,7 @@ import com.firstresources.learningactivity.databinding.FragmentProfilBinding
 import com.firstresources.learningactivity.ui.login.LoginActivity
 import com.firstresources.learningactivity.utils.CustomDialog
 import com.firstresources.learningactivity.utils.SessionManager
+import com.firstresources.learningactivity.utils.UpdateManager
 import kotlinx.coroutines.launch
 
 class ProfilFragment : Fragment() {
@@ -45,6 +46,10 @@ class ProfilFragment : Fragment() {
         }
 
         fetchRemoteProfile()
+
+        binding.tvAppVersion.setOnClickListener {
+            UpdateManager.checkForUpdates(requireContext(), showNoUpdateToast = true)
+        }
 
         binding.btnLogout.setOnClickListener {
             CustomDialog.showConfirmation(

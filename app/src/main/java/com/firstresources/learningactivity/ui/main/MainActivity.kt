@@ -13,6 +13,7 @@ import com.firstresources.learningactivity.ui.dashboard.DashboardFragment
 import com.firstresources.learningactivity.ui.evaluasi.EvaluasiFragment
 import com.firstresources.learningactivity.ui.profil.ProfilFragment
 import com.firstresources.learningactivity.ui.tugas.TugasFragment
+import com.firstresources.learningactivity.utils.UpdateManager
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,6 +29,8 @@ class MainActivity : AppCompatActivity() {
             view.updatePadding(bottom = insets.bottom)
             windowInsets
         }
+
+        UpdateManager.checkForUpdates(this)
 
         if (savedInstanceState == null) {
             loadFragment(DashboardFragment())
