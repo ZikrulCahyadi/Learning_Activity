@@ -26,22 +26,22 @@
 
             <!-- ICON CIRCULAR BADGE -->
             <FrameLayout
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="68dp"
+                android:layout_height="68dp"
                 android:background="@drawable/bg_dialog_circle"
                 android:backgroundTint="#DCFCE7">
 
                 <ImageView
                     android:id="@+id/ivSuccessIcon"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
                     android:layout_gravity="center"
                     android:contentDescription="Success Icon"
                     android:src="@drawable/ic_check_circle"
                     app:tint="#16A34A" />
             </FrameLayout>
 
-            <!-- SUBTITLE / BADGE: EVALUASI SELESAI -->
+            <!-- SUBTITLE / BADGE: PELATIHAN SELESAI -->
             <TextView
                 android:id="@+id/tvBadgeSubtitle"
                 android:layout_width="wrap_content"
@@ -49,11 +49,11 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_pill_badge"
                 android:backgroundTint="#DCFCE7"
-                android:paddingStart="12dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="4dp"
-                android:text="EVALUASI SELESAI"
+                android:paddingStart="14dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="14dp"
+                android:paddingBottom="5dp"
+                android:text="PELATIHAN SELESAI"
                 android:textColor="#047857"
                 android:textSize="11sp"
                 android:textStyle="bold"
@@ -66,9 +66,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="Terima Kasih!"
+                android:text="Pelatihan Selesai!"
                 android:textColor="@color/forest_dark"
-                android:textSize="21sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
             <!-- MESSAGE -->
@@ -79,7 +79,7 @@
                 android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:lineSpacingMultiplier="1.25"
-                android:text="Evaluasi pelatihan telah berhasil dikirimkan. Penilaian Anda sangat bermanfaat bagi evaluasi instruktur dan pengembangan materi First Resources Academy."
+                android:text="Selamat! Anda telah menyelesaikan seluruh rangkaian kegiatan pelatihan. Penilaian evaluasi Anda telah berhasil dikirimkan."
                 android:textColor="@color/text_muted"
                 android:textSize="13sp" />
 
@@ -154,6 +154,37 @@
                             android:layout_weight="1"
                             android:text="Pinondang L Simanungkalit"
                             android:textColor="@color/text_slate"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="#E2E8F0" />
+
+                    <!-- Status Pelatihan -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@drawable/ic_check_circle"
+                            app:tint="#16A34A" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:text="Status: Pelatihan Telah Selesai"
+                            android:textColor="#16A34A"
                             android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>

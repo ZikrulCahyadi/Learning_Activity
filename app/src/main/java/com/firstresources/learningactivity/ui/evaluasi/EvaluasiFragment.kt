@@ -263,18 +263,8 @@ class EvaluasiFragment : Fragment() {
             return
         }
 
-        // 4. Confirm submission
-        CustomDialog.showConfirmation(
-            context = requireContext(),
-            title = "Kirim Evaluasi?",
-            message = "Pastikan seluruh penilaian dan masukan yang Anda berikan sudah sesuai. Jawaban tidak dapat diubah setelah dikirim.",
-            positiveText = "Ya, Kirim",
-            negativeText = "Periksa Kembali",
-            type = CustomDialog.Type.SUCCESS,
-            onPositive = {
-                executeSubmit(explanation, kesanPesan)
-            }
-        )
+        // 4. Langsung submit dan tampilkan pop-up Pelatihan Selesai
+        executeSubmit(explanation, kesanPesan)
     }
 
     private fun executeSubmit(explanation: String, kesanPesan: String) {
@@ -338,7 +328,7 @@ class EvaluasiFragment : Fragment() {
             trainingTitle = title,
             trainerName = trainer,
             onDismissToHome = {
-                showEmptyState("Pelatihan Telah Dievaluasi", "Terima kasih, Anda telah menyelesaikan evaluasi untuk sesi pelatihan ini.")
+                showEmptyState("Pelatihan Telah Selesai", "Selamat! Anda telah menyelesaikan seluruh rangkaian kegiatan dan evaluasi sesi pelatihan ini.")
                 (activity as? MainActivity)?.selectNavigationTab(R.id.navigation_dashboard)
             }
         )

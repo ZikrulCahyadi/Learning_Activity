@@ -267,18 +267,8 @@ class EvaluasiActivity : AppCompatActivity() {
             return
         }
 
-        // 4. Confirm submission
-        CustomDialog.showConfirmation(
-            context = this,
-            title = "Kirim Evaluasi?",
-            message = "Pastikan seluruh penilaian dan masukan yang Anda berikan sudah sesuai. Jawaban tidak dapat diubah setelah dikirim.",
-            positiveText = "Ya, Kirim",
-            negativeText = "Periksa Kembali",
-            type = CustomDialog.Type.SUCCESS,
-            onPositive = {
-                executeSubmit(explanation, kesanPesan)
-            }
-        )
+        // 4. Langsung submit dan tampilkan pop-up Pelatihan Selesai
+        executeSubmit(explanation, kesanPesan)
     }
 
     private fun executeSubmit(explanation: String, kesanPesan: String) {

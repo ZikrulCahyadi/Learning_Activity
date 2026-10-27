@@ -219,9 +219,9 @@ object CustomDialog {
 
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        binding.tvSuccessTitle.text = "Terima Kasih!"
-        binding.tvBadgeSubtitle.text = "EVALUASI SELESAI"
-        binding.tvSuccessMessage.text = "Evaluasi pelatihan telah berhasil dikirimkan. Penilaian Anda sangat bermanfaat bagi evaluasi instruktur dan pengembangan materi First Resources Academy."
+        binding.tvSuccessTitle.text = "Pelatihan Selesai!"
+        binding.tvBadgeSubtitle.text = "PELATIHAN SELESAI"
+        binding.tvSuccessMessage.text = "Selamat! Anda telah menyelesaikan seluruh rangkaian kegiatan pelatihan. Penilaian evaluasi Anda telah berhasil dikirimkan."
 
         binding.tvInfoTrainingTitle.text = if (trainingTitle.isNotBlank()) trainingTitle else "Pelatihan First Resources"
         binding.tvInfoTrainerName.text = if (trainerName.isNotBlank()) trainerName else "Instruktur"
