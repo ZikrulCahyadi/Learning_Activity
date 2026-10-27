@@ -41,7 +41,7 @@
                     app:tint="#16A34A" />
             </FrameLayout>
 
-            <!-- SUBTITLE / BADGE: PELATIHAN SELESAI -->
+            <!-- SUBTITLE / BADGE -->
             <TextView
                 android:id="@+id/tvBadgeSubtitle"
                 android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
                 android:paddingTop="5dp"
                 android:paddingEnd="14dp"
                 android:paddingBottom="5dp"
-                android:text="PELATIHAN SELESAI"
+                android:text="EVALUASI TERKIRIM"
                 android:textColor="#047857"
                 android:textSize="11sp"
                 android:textStyle="bold"
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="Pelatihan Selesai!"
+                android:text="Terima Kasih!"
                 android:textColor="@color/forest_dark"
                 android:textSize="22sp"
                 android:textStyle="bold" />
@@ -79,7 +79,7 @@
                 android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:lineSpacingMultiplier="1.25"
-                android:text="Selamat! Anda telah menyelesaikan seluruh rangkaian kegiatan pelatihan. Penilaian evaluasi Anda telah berhasil dikirimkan."
+                android:text="Evaluasi pelatihan telah berhasil dikirimkan. Penilaian Anda sangat bermanfaat bagi evaluasi instruktur dan pengembangan materi First Resources Academy."
                 android:textColor="@color/text_muted"
                 android:textSize="13sp" />
 
@@ -120,7 +120,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:layout_weight="1"
-                            android:text="Problem Solving &amp; Decision Making"
+                            android:text="Pelatihan First Resources"
                             android:textColor="@color/forest_dark"
                             android:textSize="13sp"
                             android:textStyle="bold" />
@@ -152,25 +152,30 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:layout_weight="1"
-                            android:text="Pinondang L Simanungkalit"
+                            android:text="Instruktur"
                             android:textColor="@color/text_slate"
                             android:textSize="12sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
+                    <!-- Divider Status (Muncul di tahap 2) -->
                     <View
+                        android:id="@+id/dividerTrainingStatus"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
-                        android:background="#E2E8F0" />
+                        android:background="#E2E8F0"
+                        android:visibility="gone" />
 
-                    <!-- Status Pelatihan -->
+                    <!-- Status Pelatihan (Muncul di tahap 2) -->
                     <LinearLayout
+                        android:id="@+id/layoutTrainingStatus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:gravity="center_vertical">
+                        android:gravity="center_vertical"
+                        android:visibility="gone">
 
                         <ImageView
                             android:layout_width="18dp"
@@ -191,7 +196,7 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- ACTION BUTTON: KEMBALI KE BERANDA -->
+            <!-- ACTION BUTTON -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnBackToHome"
                 android:layout_width="match_parent"
@@ -199,7 +204,7 @@
                 android:backgroundTint="#047857"
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
-                android:text="Kembali ke Beranda"
+                android:text="Lanjut"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="14sp"

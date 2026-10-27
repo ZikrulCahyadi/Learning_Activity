@@ -219,16 +219,41 @@ object CustomDialog {
 
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        binding.tvSuccessTitle.text = "Pelatihan Selesai!"
-        binding.tvBadgeSubtitle.text = "PELATIHAN SELESAI"
-        binding.tvSuccessMessage.text = "Selamat! Anda telah menyelesaikan seluruh rangkaian kegiatan pelatihan. Penilaian evaluasi Anda telah berhasil dikirimkan."
+        var currentStep = 1
+
+        fun updateUI() {
+            if (currentStep == 1) {
+                // TAHAP 1: Terima kasih telah isi evaluasi
+                binding.tvBadgeSubtitle.text = "EVALUASI TERKIRIM"
+                binding.tvSuccessTitle.text = "Terima Kasih!"
+                binding.tvSuccessMessage.text = "Evaluasi pelatihan telah berhasil dikirimkan. Penilaian Anda sangat bermanfaat bagi evaluasi instruktur dan pengembangan materi First Resources Academy."
+                binding.dividerTrainingStatus.visibility = View.GONE
+                binding.layoutTrainingStatus.visibility = View.GONE
+                binding.btnBackToHome.text = "Lanjut"
+            } else {
+                // TAHAP 2: Pelatihan selesai / terima kasih telah mengikuti training
+                binding.tvBadgeSubtitle.text = "PELATIHAN SELESAI"
+                binding.tvSuccessTitle.text = "Pelatihan Selesai!"
+                binding.tvSuccessMessage.text = "Selamat! Anda telah menyelesaikan seluruh rangkaian kegiatan pelatihan. Terima kasih atas partisipasi dan dedikasi Anda."
+                binding.dividerTrainingStatus.visibility = View.VISIBLE
+                binding.layoutTrainingStatus.visibility = View.VISIBLE
+                binding.btnBackToHome.text = "Kembali ke Beranda"
+            }
+        }
 
         binding.tvInfoTrainingTitle.text = if (trainingTitle.isNotBlank()) trainingTitle else "Pelatihan First Resources"
         binding.tvInfoTrainerName.text = if (trainerName.isNotBlank()) trainerName else "Instruktur"
 
+        updateUI()
+
         binding.btnBackToHome.setOnClickListener {
-            dialog.dismiss()
-            onDismissToHome.invoke()
+            if (currentStep == 1) {
+                currentStep = 2
+                updateUI()
+            } else {
+                dialog.dismiss()
+                onDismissToHome.invoke()
+            }
         }
 
         dialog.show()
