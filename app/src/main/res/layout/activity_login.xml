@@ -109,7 +109,7 @@
                             android:layout_height="52dp"
                             android:layout_marginTop="20dp"
                             android:backgroundTint="@color/header_green_dark"
-                            android:text="Masuk Portal"
+                            android:text="Login"
                             android:textAllCaps="false"
                             android:textColor="@color/white"
                             android:textSize="15sp"
@@ -134,7 +134,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Learning &amp; Development — First Resources"
+                android:text="Learning &amp; Development â€” First Resources"
                 android:textColor="#99FFFFFF"
                 android:textSize="12sp" />
 
