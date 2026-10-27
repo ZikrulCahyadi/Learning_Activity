@@ -32,6 +32,7 @@ data class LoginResponse(
 
 data class ClassInfo(
     val id: Long? = null,
+    val title: String? = null,
     val subject: String? = null,
     val trainer: String? = null,
     @SerializedName("trainer_name") val trainerName: String? = null,
@@ -42,7 +43,9 @@ data class ClassInfo(
     @SerializedName("end_date") val endDate: String? = null,
     @SerializedName("is_passed") val isPassed: Boolean? = null,
     @SerializedName("lms_url") val lmsUrl: String? = null,
-    @SerializedName("mess_url") val messUrl: String? = null
+    @SerializedName("mess_url") val messUrl: String? = null,
+    @SerializedName("is_completed") val isCompleted: Boolean? = null,
+    @SerializedName("completed_at") val completedAt: String? = null
 )
 
 data class DashboardData(

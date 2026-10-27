@@ -1,6 +1,12 @@
 package com.firstresources.learningactivity.ui.evaluasi
 
 import android.os.Bundle
+import android.content.Context
+import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.os.VibratorManager
+import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +34,8 @@ class EvaluasiFragment : Fragment() {
     private lateinit var sessionManager: SessionManager
 
     private var activeSessionId: Long = 101
+    private var currentMateriName: String = ""
+    private var currentTrainerName: String = ""
     private val answersMap = mutableMapOf<String, String>()
 
     override fun onCreateView(
@@ -173,6 +181,9 @@ class EvaluasiFragment : Fragment() {
                     val evalMateri = session.title ?: session.materi ?: materiName
                     val evalTrainer = session.trainerName ?: session.trainer ?: trainerName
 
+                    currentMateriName = evalMateri
+                    currentTrainerName = evalTrainer
+
                     binding.tvSessionName.text = "Materi: " + evalMateri
                     binding.tvTrainerName.text = "Trainer: " + evalTrainer
 
@@ -183,6 +194,8 @@ class EvaluasiFragment : Fragment() {
                 }
             } catch (e: Exception) {
                 binding.progressBar.visibility = View.GONE
+                currentMateriName = materiName
+                currentTrainerName = trainerName
                 binding.tvSessionName.text = "Materi: " + materiName
                 binding.tvTrainerName.text = "Trainer: " + trainerName
                 binding.layoutFormContent.visibility = View.VISIBLE
@@ -280,8 +293,10 @@ class EvaluasiFragment : Fragment() {
                     )
                 )
 
+                triggerHapticFeedback()
                 showSuccessDialog()
             } catch (e: Exception) {
+                triggerHapticFeedback()
                 showSuccessDialog()
             } finally {
                 binding.btnSubmitEval.isEnabled = true
@@ -290,14 +305,39 @@ class EvaluasiFragment : Fragment() {
         }
     }
 
+    private fun triggerHapticFeedback() {
+        try {
+            binding.root.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
+            val ctx = context ?: return
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                val vibratorManager = ctx.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as? VibratorManager
+                vibratorManager?.defaultVibrator?.vibrate(
+                    VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE)
+                )
+            } else {
+                @Suppress("DEPRECATION")
+                val vibrator = ctx.getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    vibrator?.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE))
+                } else {
+                    @Suppress("DEPRECATION")
+                    vibrator?.vibrate(100)
+                }
+            }
+        } catch (e: Exception) {
+            // Safe fallback
+        }
+    }
+
     private fun showSuccessDialog() {
-        CustomDialog.showSuccess(
+        val title = currentMateriName.ifEmpty { sessionManager.getSubjectName().ifEmpty { "Pelatihan First Resources" } }
+        val trainer = currentTrainerName.ifEmpty { sessionManager.getTrainerName().ifEmpty { "Instruktur" } }
+
+        CustomDialog.showEvaluationSuccess(
             context = requireContext(),
-            title = "Evaluasi Berhasil Dikirim!",
-            message = "Terima kasih telah mengisi evaluasi kegiatan pelatihan ini. Masukan Anda sangat berarti bagi pengembangan pelatihan kami.",
-            buttonText = "Kembali ke Dashboard",
-            isCancelable = false,
-            onDismiss = {
+            trainingTitle = title,
+            trainerName = trainer,
+            onDismissToHome = {
                 showEmptyState("Pelatihan Telah Dievaluasi", "Terima kasih, Anda telah menyelesaikan evaluasi untuk sesi pelatihan ini.")
                 (activity as? MainActivity)?.selectNavigationTab(R.id.navigation_dashboard)
             }

@@ -203,4 +203,41 @@ object CustomDialog {
 
         return dialog
     }
+    fun showEvaluationSuccess(
+        context: Context,
+        trainingTitle: String,
+        trainerName: String,
+        onDismissToHome: () -> Unit
+    ): Dialog {
+        val dialog = Dialog(context)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+
+        val binding = com.firstresources.learningactivity.databinding.DialogCustomEvaluationSuccessBinding.inflate(LayoutInflater.from(context))
+        dialog.setContentView(binding.root)
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
+
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        binding.tvSuccessTitle.text = "Terima Kasih!"
+        binding.tvBadgeSubtitle.text = "EVALUASI SELESAI"
+        binding.tvSuccessMessage.text = "Evaluasi pelatihan telah berhasil dikirimkan. Penilaian Anda sangat bermanfaat bagi evaluasi instruktur dan pengembangan materi First Resources Academy."
+
+        binding.tvInfoTrainingTitle.text = if (trainingTitle.isNotBlank()) trainingTitle else "Pelatihan First Resources"
+        binding.tvInfoTrainerName.text = if (trainerName.isNotBlank()) trainerName else "Instruktur"
+
+        binding.btnBackToHome.setOnClickListener {
+            dialog.dismiss()
+            onDismissToHome.invoke()
+        }
+
+        dialog.show()
+
+        val displayMetrics = context.resources.displayMetrics
+        val maxPx = (360 * displayMetrics.density).toInt()
+        val dialogWidth = (displayMetrics.widthPixels * 0.90).toInt().coerceAtMost(maxPx)
+        dialog.window?.setLayout(dialogWidth, ViewGroup.LayoutParams.WRAP_CONTENT)
+
+        return dialog
+    }
 }

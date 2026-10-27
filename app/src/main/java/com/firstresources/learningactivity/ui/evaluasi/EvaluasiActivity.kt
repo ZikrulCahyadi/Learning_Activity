@@ -1,6 +1,12 @@
 package com.firstresources.learningactivity.ui.evaluasi
 
 import android.os.Bundle
+import android.content.Context
+import android.os.Build
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.os.VibratorManager
+import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +35,8 @@ class EvaluasiActivity : AppCompatActivity() {
     private lateinit var sessionManager: SessionManager
 
     private var activeSessionId: Long = 101
+    private var currentMateriName: String = ""
+    private var currentTrainerName: String = ""
     private val answersMap = mutableMapOf<String, String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -177,6 +185,9 @@ class EvaluasiActivity : AppCompatActivity() {
                     val evalMateri = session.title ?: session.materi ?: materiName
                     val evalTrainer = session.trainerName ?: session.trainer ?: trainerName
 
+                    currentMateriName = evalMateri
+                    currentTrainerName = evalTrainer
+
                     binding.tvSessionName.text = "Materi: " + evalMateri
                     binding.tvTrainerName.text = "Trainer: " + evalTrainer
 
@@ -187,6 +198,8 @@ class EvaluasiActivity : AppCompatActivity() {
                 }
             } catch (e: Exception) {
                 binding.progressBar.visibility = View.GONE
+                currentMateriName = materiName
+                currentTrainerName = trainerName
                 binding.tvSessionName.text = "Materi: " + materiName
                 binding.tvTrainerName.text = "Trainer: " + trainerName
                 binding.layoutFormContent.visibility = View.VISIBLE
@@ -284,8 +297,10 @@ class EvaluasiActivity : AppCompatActivity() {
                     )
                 )
 
+                triggerHapticFeedback()
                 showSuccessDialog()
             } catch (e: Exception) {
+                triggerHapticFeedback()
                 showSuccessDialog()
             } finally {
                 binding.btnSubmitEval.isEnabled = true
@@ -294,14 +309,38 @@ class EvaluasiActivity : AppCompatActivity() {
         }
     }
 
+    private fun triggerHapticFeedback() {
+        try {
+            binding.root.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                val vibratorManager = getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as? VibratorManager
+                vibratorManager?.defaultVibrator?.vibrate(
+                    VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE)
+                )
+            } else {
+                @Suppress("DEPRECATION")
+                val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    vibrator?.vibrate(VibrationEffect.createOneShot(100, VibrationEffect.DEFAULT_AMPLITUDE))
+                } else {
+                    @Suppress("DEPRECATION")
+                    vibrator?.vibrate(100)
+                }
+            }
+        } catch (e: Exception) {
+            // Safe fallback
+        }
+    }
+
     private fun showSuccessDialog() {
-        CustomDialog.showSuccess(
+        val title = currentMateriName.ifEmpty { sessionManager.getSubjectName().ifEmpty { "Pelatihan First Resources" } }
+        val trainer = currentTrainerName.ifEmpty { sessionManager.getTrainerName().ifEmpty { "Instruktur" } }
+
+        CustomDialog.showEvaluationSuccess(
             context = this,
-            title = "Evaluasi Berhasil Dikirim!",
-            message = "Terima kasih telah mengisi evaluasi kegiatan pelatihan ini. Masukan Anda sangat berarti bagi pengembangan pelatihan kami.",
-            buttonText = "Selesai",
-            isCancelable = false,
-            onDismiss = {
+            trainingTitle = title,
+            trainerName = trainer,
+            onDismissToHome = {
                 finish()
             }
         )

@@ -122,20 +122,31 @@ class DashboardFragment : Fragment() {
                     evalsCount = data.pendingEvaluations
 
                     val classInfo = data.classInfo
-                    if (classInfo != null && classInfo.id != null) {
-                        binding.tvScheduleHeaderTitle.text = "Jadwal Training Aktif"
-                        binding.tvScheduleSubtitle.text = classInfo.subject ?: "Detail jadwal kelas Anda saat ini."
-                        binding.tvProgramBadge.text = classInfo.subject ?: data.trainee?.program ?: "High Impact Communication"
+                    val isCompleted = classInfo?.isCompleted == true
 
-                        binding.tvScheduleDate.text = classInfo.date ?: "14 Okt 2026"
-                        binding.tvScheduleTime.text = (classInfo.startTime ?: "08:00") + " - " + (classInfo.endTime ?: "16:00")
-                        binding.tvScheduleRoom.text = (classInfo.room ?: "Ruang Leadership A").replace("FR Academy / ", "")
+                    if (classInfo != null && classInfo.id != null && !isCompleted) {
+                        val title = classInfo.title ?: classInfo.subject ?: "Detail jadwal kelas Anda saat ini."
+                        binding.tvScheduleHeaderTitle.text = "Jadwal Pelatihan Aktif"
+                        binding.tvScheduleSubtitle.text = title
+                        binding.tvProgramBadge.text = title
+
+                        binding.tvScheduleDate.text = classInfo.date ?: "Hari Ini"
+                        binding.tvScheduleTime.text = (classInfo.startTime ?: "08:00") + " - " + (classInfo.endTime ?: "17:00")
+                        binding.tvScheduleRoom.text = (classInfo.room ?: "Ruang Kelas").replace("FR Academy / ", "")
                         binding.tvScheduleTrainer.text = classInfo.trainerName ?: classInfo.trainer ?: "Nama Trainer"
                         binding.layoutScheduleDetails.visibility = View.VISIBLE
+                    } else if (isCompleted) {
+                        val title = classInfo?.title ?: classInfo?.subject ?: "Pelatihan"
+                        binding.tvScheduleHeaderTitle.text = "Pelatihan Telah Selesai"
+                        binding.tvScheduleSubtitle.text = "Sesi pelatihan $title telah selesai dilaksanakan."
+                        binding.layoutScheduleDetails.visibility = View.GONE
+                        if (!data.todayClass.isNullOrEmpty()) {
+                            binding.tvProgramBadge.text = data.todayClass
+                        }
                     } else {
-                        binding.tvScheduleHeaderTitle.text = "Jadwal Training Aktif"
-                        binding.tvScheduleSubtitle.text = "Detail jadwal kelas Anda saat ini."
-                        binding.layoutScheduleDetails.visibility = View.VISIBLE
+                        binding.tvScheduleHeaderTitle.text = "Jadwal Pelatihan Tidak Aktif"
+                        binding.tvScheduleSubtitle.text = "Saat ini belum ada jadwal kelas yang aktif."
+                        binding.layoutScheduleDetails.visibility = View.GONE
                         if (!data.todayClass.isNullOrEmpty()) {
                             binding.tvProgramBadge.text = data.todayClass
                         }
@@ -146,6 +157,26 @@ class DashboardFragment : Fragment() {
                     if (user != null) {
                         binding.tvPesertaName.text = user.name ?: "Test Peserta"
                         binding.tvProgramBadge.text = user.program ?: "High Impact Communication"
+                    }
+                    val cachedClass = sessionManager.getClassInfo()
+                    if (cachedClass != null && cachedClass.isCompleted == true) {
+                        binding.tvScheduleHeaderTitle.text = "Pelatihan Telah Selesai"
+                        val title = cachedClass.title ?: cachedClass.subject ?: "Pelatihan"
+                        binding.tvScheduleSubtitle.text = "Sesi pelatihan $title telah selesai dilaksanakan."
+                        binding.layoutScheduleDetails.visibility = View.GONE
+                    } else if (cachedClass != null && cachedClass.id != null) {
+                        val title = cachedClass.title ?: cachedClass.subject ?: "Detail jadwal kelas Anda saat ini."
+                        binding.tvScheduleHeaderTitle.text = "Jadwal Pelatihan Aktif"
+                        binding.tvScheduleSubtitle.text = title
+                        binding.tvScheduleDate.text = cachedClass.date ?: "Hari Ini"
+                        binding.tvScheduleTime.text = (cachedClass.startTime ?: "08:00") + " - " + (cachedClass.endTime ?: "17:00")
+                        binding.tvScheduleRoom.text = (cachedClass.room ?: "Ruang Kelas").replace("FR Academy / ", "")
+                        binding.tvScheduleTrainer.text = cachedClass.trainerName ?: cachedClass.trainer ?: "Nama Trainer"
+                        binding.layoutScheduleDetails.visibility = View.VISIBLE
+                    } else {
+                        binding.tvScheduleHeaderTitle.text = "Jadwal Pelatihan Tidak Aktif"
+                        binding.tvScheduleSubtitle.text = "Saat ini belum ada jadwal kelas yang aktif."
+                        binding.layoutScheduleDetails.visibility = View.GONE
                     }
                     tasksCount = 1
                     evalsCount = 1
