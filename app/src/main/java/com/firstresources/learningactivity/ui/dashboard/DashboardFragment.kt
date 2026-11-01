@@ -77,7 +77,7 @@ class DashboardFragment : Fragment() {
 
         binding.btnMess.setOnClickListener {
             try {
-                val url = currentClassInfo?.messUrl ?: "https://mess-fr-academy.my.id/"
+                val url = currentClassInfo?.messUrl ?: "https://mess-academy.first-resources.com/"
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
                 startActivity(intent)
             } catch (e: Exception) {

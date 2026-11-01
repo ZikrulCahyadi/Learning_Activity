@@ -103,7 +103,7 @@ object ApiClient {
                                         "room": "Ruang Leadership A",
                                         "date": "14 Okt 2026",
                                         "lms_url": "https://e-learning.first-resources.com/",
-                                        "mess_url": "https://mess-fr-academy.my.id/"
+                                        "mess_url": "https://mess-academy.first-resources.com/"
                                     }
                                 }
                             }
